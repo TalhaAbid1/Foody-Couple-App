@@ -1,12 +1,12 @@
-import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Index from './source/screens/welcome/Index'
+import { StatusBar, StyleSheet} from 'react-native'
+import { Navigator } from './source/routes'
 
 const App = () => {
   return (
     <>
     <StatusBar backgroundColor={'#c9743a'} barStyle={'light-content'}/>
-      <Index />
+      <Navigator />
     </>
   )
 }

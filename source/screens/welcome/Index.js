@@ -1,60 +1,43 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Image, Text, View } from 'react-native'
+import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
+import { styles } from './styles'
+import { AppImages } from '../../assets/images/ImageExporter';
 
-const Index = () => {
+const Welcome = ({ navigation }) => {
+    const ringParent = useSharedValue(0);
+    const ringChild = useSharedValue(0);
+    useEffect(() => {
+        ringParent.value = 0
+        ringChild.value = 0
+        setTimeout(() => {
+            ringChild.value = withSpring(ringChild.value + 20)
+        }, 250);
+        setTimeout(() => {
+            ringParent.value = withSpring(ringParent.value + 30)
+        }, 450);
+        setTimeout(() => {
+            navigation.replace('InAppStack')
+        }, 2300);
+
+    }, [])
     return (
         <View style={styles.container}>
-            <View style={styles.ringParent}>
-                <View style={styles.ringChild}>
-                    <Image source={require('../../assets/images/CouplePlate.png')} style={{ height: 200, width: 200 }} />
-                </View>
-            </View>
+            <Animated.View style={[styles.ringParent, { padding: ringParent }]}>
+                <Animated.View style={[styles.ringChild, { padding: ringChild }]}>
+                    <Image source={AppImages.WelcomePlate} style={{ height: 200, width: 200 }} />
+                </Animated.View>
+            </Animated.View>
             <View style={styles.textLines}>
                 <Text style={styles.tagLineText}>
-                    Foody
+                    COUPLE
                 </Text>
                 <Text style={styles.punchLineText}>
-                    Food Is Always Right
+                    Food Is Always Right 😋
                 </Text>
             </View>
         </View>
     )
 }
 
-export default Index
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#c9743a',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    ringParent: {
-        backgroundColor: 'rgba(201,201,201,0.5)',
-        padding: 25,
-        borderRadius: 135,
-    },
-    textLines: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingVertical: 25
-    },
-    ringChild: {
-        backgroundColor: 'rgba(201,201,201,0.5)',
-        padding: 10,
-        borderRadius: 110,
-    },
-    tagLineText: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 18
-    },
-    punchLineText: {
-        color: '#fff',
-        fontWeight: '500',
-        fontSize: 15
-        ,
-    },
-})
+export default Welcome;
