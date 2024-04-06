@@ -51,9 +51,9 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.8,
     },
     magnifyingGlass:{
-        padding:3,
+        padding:7,
         backgroundColor:Colors.appWhite,
-        borderRadius:25,
+        borderRadius:20,
         elevation:7,
         shadowColor: Colors.appOrange,
         shadowOffset: { width: 1, height: 1 },
@@ -63,8 +63,5 @@ export const styles = StyleSheet.create({
         fontSize:18,
         color:Colors.textGrey,
         width:'88%',
-    },
-    catalogueContainer:{
-        
     },
 })
