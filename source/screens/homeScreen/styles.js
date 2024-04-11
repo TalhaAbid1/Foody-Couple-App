@@ -9,59 +9,62 @@ export const styles = StyleSheet.create({
     image: {
         height: 70,
         width: 70,
+        borderRadius: 50,
+        borderWidth: 3,
+        borderColor: Colors.appOrange
     },
-    scrollView:{
-        flexGrow:1,
-        paddingHorizontal:10,
-        marginBottom:30,
+    scrollView: {
+        flexGrow: 1,
+        paddingHorizontal: 10,
+        marginBottom: 30,
     },
-    headerView:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
+    headerView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
-    greeting:{
+    greeting: {
         color: Colors.textGrey,
-        fontSize:14,
-        fontWeight:'500',
-        marginVertical:5,
+        fontSize: 14,
+        fontWeight: '500',
+        marginVertical: 5,
     },
-    punchLintText:{
+    punchLintText: {
         color: Colors.textGrey,
-        fontSize:23,
-        fontWeight:'700',
+        fontSize: 23,
+        fontWeight: '700',
     },
-    coupleText:{
+    coupleText: {
         color: Colors.appOrange,
-        fontWeight:'bold',
+        fontWeight: 'bold',
     },
-    searchView:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        backgroundColor:Colors.zeroGrey,
-        borderRadius:20,
-        paddingRight:15,
-        paddingLeft:10,
-        marginVertical:10,
-        height:55,
-        elevation:7,
+    searchView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: Colors.zeroGrey,
+        borderRadius: 20,
+        paddingRight: 15,
+        paddingLeft: 10,
+        marginVertical: 10,
+        height: 55,
+        elevation: 7,
         shadowColor: Colors.textGrey,
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.8,
     },
-    magnifyingGlass:{
-        padding:7,
-        backgroundColor:Colors.appWhite,
-        borderRadius:20,
-        elevation:7,
+    magnifyingGlass: {
+        padding: 7,
+        backgroundColor: Colors.appWhite,
+        borderRadius: 20,
+        elevation: 7,
         shadowColor: Colors.appOrange,
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.8,
     },
-    inputTextPlace:{
-        fontSize:18,
-        color:Colors.textGrey,
-        width:'88%',
+    inputTextPlace: {
+        fontSize: 18,
+        color: Colors.textGrey,
+        width: '88%',
     },
 })

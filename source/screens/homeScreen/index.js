@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { View, Text, Image, ScrollView, TextInput } from 'react-native';
+import Animated, { BounceInLeft, BounceInRight } from 'react-native-reanimated';
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 
 import { styles } from './styles'
@@ -30,8 +31,8 @@ const Home = () => {
             })
     }
 
-    const fetchCategoryBasedItems = async (activeCategory = 'beef') => {
-        await axios.get(`https://themealdb.com/api/json/v1/1/filter.php?i=${activeCategory}`)
+    const fetchCategoryBasedItems = async (fetchedCategory = 'beef') => {
+        await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${fetchedCategory}`)
             .then((response) => {
                 setCategoryBasedItem(response?.data?.meals)
             })
@@ -50,20 +51,20 @@ const Home = () => {
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
                 {/* HEADER VIEW */}
-                <View style={styles.headerView}>
-                    <Image source={AppImages.Avatar} style={styles.image} />
-                    <BellIcon size={35} color={Colors.textGrey} />
-                </View>
+                <Animated.View entering={BounceInLeft.delay(300).duration(700).springify()} style={styles.headerView}>
+                    <Image source={AppImages.Abid} style={styles.image} />
+                    <BellIcon size={35} color={Colors.appOrange} />
+                </Animated.View>
 
                 {/* HELLO & PUNCH LINE */}
-                <View style={{}}>
+                <Animated.View entering={BounceInRight.delay(400).duration(800).springify()}>
                     <Text style={styles.greeting}>Hello ABID</Text>
                     <Text style={styles.punchLintText}>You With Your Food</Text>
                     <Text style={styles.punchLintText}>Makes Great <Text style={styles.coupleText}>Couple</Text></Text>
-                </View>
+                </Animated.View>
 
                 {/* SEARCH */}
-                <View style={styles.searchView}>
+                <Animated.View entering={BounceInLeft.delay(500).duration(900).springify()} style={styles.searchView}>
                     <TextInput
                         placeholder='Search Your Food...'
                         placeholderTextColor={Colors.midGrey}
@@ -72,7 +73,7 @@ const Home = () => {
                     <View style={styles.magnifyingGlass}>
                         <MagnifyingGlassIcon size={30} color={Colors.textGrey} />
                     </View>
-                </View>
+                </Animated.View>
 
                 {/* CATALOGUE CATEGORY */}
                 {allCategory?.length > 0 && <Catalogue allCategory={allCategory} activeCategory={activeCategory} changeRecipeList={changeRecipeList} />}

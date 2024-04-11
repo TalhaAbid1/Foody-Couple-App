@@ -1,10 +1,12 @@
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MasonryList from '@react-native-seoul/masonry-list';
 import Animated, { FadeInDown, FadeInLeft } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
 
 import { Colors } from '../utils/Colors';
 
 const Recipes = ({ categoryBasedItem, allCategory }) => {
+    const navigation = useNavigation()
     const imageHeight = (value) => {
         return (
             (value % 4 === 0) ? 150 : (value % 3 === 0) ? 250 : (value % 2 === 0) ? 350 : 450
@@ -12,9 +14,16 @@ const Recipes = ({ categoryBasedItem, allCategory }) => {
     }
     const CardItem = ({ item }) => {
         return (
-            <Animated.View entering={FadeInDown.delay(imageHeight(item?.idMeal)+100).duration(500).springify()}>
-                <TouchableOpacity style={styles.imageShadow}>
-                    <Image style={[styles.itemImage, { height: imageHeight(item?.idMeal) }]} source={{ uri: item?.strMealThumb }} />
+            <Animated.View entering={FadeInDown.delay(imageHeight(item?.idMeal) + 100).duration(500).springify()}>
+                <TouchableOpacity style={styles.imageShadow} activeOpacity={0.7} onPress={() => navigation.navigate('InAppStack', {
+                    screen: 'RecipeDetails', params: {
+                        item: { ...item }
+                    }
+                })}>
+                    <Animated.Image
+                    style={[styles.itemImage, { height: imageHeight(item?.idMeal) }]}
+                    sharedTransitionTag={item?.strMealThumb} 
+                    source={{ uri: item?.strMealThumb }} />
                 </TouchableOpacity>
                 <Text style={styles.itemName} numberOfLines={1}>{item?.strMeal}</Text>
             </Animated.View>
